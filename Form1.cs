@@ -12,21 +12,6 @@ using System.Windows.Forms;
 namespace WinFormsCG
 {
 
-    internal static class Mosaika
-    {
-        public static int mosaikaBoxWidth { get; set; }
-        public static int mosaikaBoxHeigth { get; set; }
-
-        public static int boxSize { get; set; }
-
-        public static Color[] colors = { Color.Crimson, Color.Chocolate, Color.Coral, Color.White };
-        static Mosaika()
-        {
-            mosaikaBoxWidth = 300;
-            mosaikaBoxHeigth = 300;
-            boxSize = 4;
-        }
-    }
 
     public partial class Form1 : Form
     {
@@ -70,7 +55,7 @@ namespace WinFormsCG
 
         private void start_mosaika_Click(object sender, EventArgs e)
         {
-            
+            Refresh();
             int widthBox = Mosaika.boxSize;
 
             Color[] colors = Mosaika.colors;
@@ -103,18 +88,177 @@ namespace WinFormsCG
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedState = comboBox1.SelectedItem.ToString();
-            
+            int index = comboBox1.SelectedIndex;
+            int numberColor = 0;
+            switch (index)
+            {
+                case 0:
+                    Mosaika.colors[numberColor] = Color.Red;
+                    break;
+                case 1:
+                    Mosaika.colors[numberColor] = Color.Black;
+                    break;
+                case 2:
+                    Mosaika.colors[numberColor] = Color.Green;
+                    break;
+                case 3:
+                    Mosaika.colors[numberColor] = Color.Yellow;
+                    break;
+                case 4:
+                    Mosaika.colors[numberColor] = Color.Brown;
+                    break;
+                case 5:
+                    Mosaika.colors[numberColor] = Color.Crimson;
+                    break;
+                case 6:
+                    Mosaika.colors[numberColor] = Color.Coral;
+                    break;
+                case 7:
+                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int index = comboBox2.SelectedIndex;
+            int numberColor = 1;
+            switch (index)
+            {
+                case 0:
+                    Mosaika.colors[numberColor] = Color.Red;
+                    break;
+                case 1:
+                    Mosaika.colors[numberColor] = Color.Black;
+                    break;
+                case 2:
+                    Mosaika.colors[numberColor] = Color.Green;
+                    break;
+                case 3:
+                    Mosaika.colors[numberColor] = Color.Yellow;
+                    break;
+                case 4:
+                    Mosaika.colors[numberColor] = Color.Brown;
+                    break;
+                case 5:
+                    Mosaika.colors[numberColor] = Color.Crimson;
+                    break;
+                case 6:
+                    Mosaika.colors[numberColor] = Color.Coral;
+                    break;
+                case 7:
+                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBox3.SelectedIndex;
+            int numberColor = 2;
+            switch (index)
+            {
+                case 0:
+                    Mosaika.colors[numberColor] = Color.Red;
+                    break;
+                case 1:
+                    Mosaika.colors[numberColor] = Color.Black;
+                    break;
+                case 2:
+                    Mosaika.colors[numberColor] = Color.Green;
+                    break;
+                case 3:
+                    Mosaika.colors[numberColor] = Color.Yellow;
+                    break;
+                case 4:
+                    Mosaika.colors[numberColor] = Color.Brown;
+                    break;
+                case 5:
+                    Mosaika.colors[numberColor] = Color.Crimson;
+                    break;
+                case 6:
+                    Mosaika.colors[numberColor] = Color.Coral;
+                    break;
+                case 7:
+                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = comboBox4.SelectedIndex;
+            int numberColor = 3;
+            switch (index)
+            {
+                case 0:
+                    Mosaika.colors[numberColor] = Color.Red;
+                    break;
+                case 1:
+                    Mosaika.colors[numberColor] = Color.Black;
+                    break;
+                case 2:
+                    Mosaika.colors[numberColor] = Color.Green;
+                    break;
+                case 3:
+                    Mosaika.colors[numberColor] = Color.Yellow;
+                    break;
+                case 4:
+                    Mosaika.colors[numberColor] = Color.Brown;
+                    break;
+                case 5:
+                    Mosaika.colors[numberColor] = Color.Crimson;
+                    break;
+                case 6:
+                    Mosaika.colors[numberColor] = Color.Coral;
+                    break;
+                case 7:
+                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
         {
+            int index = domainUpDown1.SelectedIndex;
+            switch (index)
+            {
+                case 0:
+                    Mosaika.boxSize = 2;
+                    break;
+                case 1:
+                    Mosaika.boxSize = 4;
+                    break;
+                case 2:
+                    Mosaika.boxSize = 8;
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            int width;
+            bool isNum = int.TryParse(textBox5.Text, out width);
+            if (isNum)
+                Mosaika.mosaikaBoxWidth = width;
+           
+        }
+
+        private void textBox6_TextChanged(object sender, EventArgs e)
+        {
+            int heigth;
+            bool isNum = int.TryParse(textBox6.Text, out heigth);
+            if (isNum)
+                Mosaika.mosaikaBoxHeigth = heigth;
         }
     }
 }

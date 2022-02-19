@@ -48,6 +48,8 @@ namespace WinFormsCG
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -97,8 +99,8 @@ namespace WinFormsCG
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBox1.Location = new System.Drawing.Point(0, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(673, 418);
@@ -139,6 +141,8 @@ namespace WinFormsCG
             // 
             // MosaikaPanel
             // 
+            this.MosaikaPanel.AllowDrop = true;
+            this.MosaikaPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.MosaikaPanel.Controls.Add(this.textBox1);
             this.MosaikaPanel.Controls.Add(this.comboBox1);
             this.MosaikaPanel.Controls.Add(this.textBox2);
@@ -148,6 +152,8 @@ namespace WinFormsCG
             this.MosaikaPanel.Controls.Add(this.textBox4);
             this.MosaikaPanel.Controls.Add(this.comboBox4);
             this.MosaikaPanel.Controls.Add(this.domainUpDown1);
+            this.MosaikaPanel.Controls.Add(this.textBox5);
+            this.MosaikaPanel.Controls.Add(this.textBox6);
             this.MosaikaPanel.Location = new System.Drawing.Point(682, 28);
             this.MosaikaPanel.Name = "MosaikaPanel";
             this.MosaikaPanel.Size = new System.Drawing.Size(153, 366);
@@ -221,6 +227,7 @@ namespace WinFormsCG
             this.comboBox2.Size = new System.Drawing.Size(144, 23);
             this.comboBox2.TabIndex = 4;
             this.comboBox2.TabStop = false;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged_1);
             // 
             // textBox3
             // 
@@ -254,6 +261,7 @@ namespace WinFormsCG
             this.comboBox3.Size = new System.Drawing.Size(144, 23);
             this.comboBox3.TabIndex = 6;
             this.comboBox3.TabStop = false;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // textBox4
             // 
@@ -287,6 +295,7 @@ namespace WinFormsCG
             this.comboBox4.Size = new System.Drawing.Size(144, 23);
             this.comboBox4.TabIndex = 8;
             this.comboBox4.TabStop = false;
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // domainUpDown1
             // 
@@ -301,6 +310,28 @@ namespace WinFormsCG
             this.domainUpDown1.Text = "Box Size";
             this.domainUpDown1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.domainUpDown1.SelectedItemChanged += new System.EventHandler(this.domainUpDown1_SelectedItemChanged);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(3, 274);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(144, 23);
+            this.textBox5.TabIndex = 10;
+            this.textBox5.Text = "Mosaika width";
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(3, 310);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(144, 23);
+            this.textBox6.TabIndex = 11;
+            this.textBox6.Text = "Mosaika height";
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // Form1
             // 
@@ -349,6 +380,8 @@ namespace WinFormsCG
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox6;
     }
 }
 
