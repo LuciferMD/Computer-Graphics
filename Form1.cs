@@ -11,6 +11,23 @@ using System.Windows.Forms;
 
 namespace WinFormsCG
 {
+
+    internal static class Mosaika
+    {
+        public static int mosaikaBoxWidth { get; set; }
+        public static int mosaikaBoxHeigth { get; set; }
+
+        public static int boxSize { get; set; }
+
+        public static Color[] colors = { Color.Crimson, Color.Chocolate, Color.Coral, Color.White };
+        static Mosaika()
+        {
+            mosaikaBoxWidth = 300;
+            mosaikaBoxHeigth = 300;
+            boxSize = 4;
+        }
+    }
+
     public partial class Form1 : Form
     {
         private Graphics graphics;
@@ -27,14 +44,13 @@ namespace WinFormsCG
 
         private void task1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            right_panel.Text = "Mosaika";
+            
             start_mosaika.Visible = true;
-
+            MosaikaPanel.Visible = true;
         }
 
 
-      
-
+     
         private void Form1_Load(object sender, EventArgs e)
         {
            
@@ -54,27 +70,51 @@ namespace WinFormsCG
 
         private void start_mosaika_Click(object sender, EventArgs e)
         {
-            int widthBox = 20;
+            
+            int widthBox = Mosaika.boxSize;
 
-            for (int b = 0; b < pictureBox1.Height; b++)
+            Color[] colors = Mosaika.colors;
+
+            int countWidthBoxes = Mosaika.mosaikaBoxWidth / widthBox;
+            int countHeightBoxes = Mosaika.mosaikaBoxHeigth / widthBox;
+
+            for (int b = 0; b < countHeightBoxes; b++)
             {
-                for (int i = 0; i < pictureBox1.Width; i++)
+                for (int i = 0; i < countWidthBoxes; i++)
                 {
-                    brush = new SolidBrush(Color.FromArgb(255, (byte)random.Next(256), (byte)random.Next(256), (byte)random.Next(256)));
+                    brush = new SolidBrush(colors[random.Next(0,colors.Length)]); ///Choose random color from massive
 
                     Rectangle rectangle = new Rectangle(i* widthBox, b* widthBox, widthBox, widthBox);
                     graphics.FillRectangle(brush, rectangle);   
                 }
             }
             
-        } 
+        }
 
-          
-          
+        private void redToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
 
-        
+        private void menuStrip2_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedState = comboBox1.SelectedItem.ToString();
+            
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
