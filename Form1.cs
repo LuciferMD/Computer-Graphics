@@ -60,17 +60,38 @@ namespace WinFormsCG
 
             Color[] colors = Mosaika.colors;
 
-            int countWidthBoxes = Mosaika.mosaikaBoxWidth / widthBox;
-            int countHeightBoxes = Mosaika.mosaikaBoxHeigth / widthBox;
+            int countWidthBoxes = Mosaika.mosaikaBoxWidth / widthBox+1;
+            int countHeightBoxes = Mosaika.mosaikaBoxHeigth / widthBox+1;
 
             for (int b = 0; b < countHeightBoxes; b++)
             {
                 for (int i = 0; i < countWidthBoxes; i++)
                 {
                     brush = new SolidBrush(colors[random.Next(0,colors.Length)]); ///Choose random color from massive
+                    if(i == countWidthBoxes-1)
+                    {
+                        int whg = Mosaika.mosaikaBoxWidth % widthBox ;
+                        int heig = widthBox;
+                        if(b == countHeightBoxes - 1)
+                        {
+                             heig = Mosaika.mosaikaBoxHeigth % widthBox;
+                        }
+                        Rectangle rectangle1 = new Rectangle(i * widthBox, b * widthBox, whg, heig);
+                        graphics.FillRectangle(brush, rectangle1);
 
+                    }
+                    else if (b == countHeightBoxes - 1)
+                    {
+                        int heig = Mosaika.mosaikaBoxHeigth % widthBox;
+                        Rectangle rectangle2 = new Rectangle(i * widthBox, b * widthBox, widthBox, heig);
+                        graphics.FillRectangle(brush, rectangle2);
+                    }
+                    else
+                    {
                     Rectangle rectangle = new Rectangle(i* widthBox, b* widthBox, widthBox, widthBox);
                     graphics.FillRectangle(brush, rectangle);   
+                    }
+                    
                 }
             }
             
