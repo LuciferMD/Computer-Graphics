@@ -12,7 +12,7 @@ namespace WinFormsCG
 
         public static int boxSize { get; set; }
 
-        public static Color[] colors = { Color.Crimson, Color.Chocolate, Color.Coral, Color.White };
+        public static System.Drawing.Color[] colors = { System.Drawing.Color.Crimson, System.Drawing.Color.Chocolate, System.Drawing.Color.Coral, System.Drawing.Color.White };
         static Mosaika()
         {
             mosaikaBoxWidth = 670;

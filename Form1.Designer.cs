@@ -33,6 +33,8 @@ namespace WinFormsCG
             this.taskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.task1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorConversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -50,11 +52,29 @@ namespace WinFormsCG
             this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.hslRGB = new System.Windows.Forms.Button();
+            this.RgbHsl = new System.Windows.Forms.Button();
+            this.textBoxL = new System.Windows.Forms.TextBox();
+            this.textBoxS = new System.Windows.Forms.TextBox();
+            this.textBoxH = new System.Windows.Forms.TextBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBoxB = new System.Windows.Forms.TextBox();
+            this.textBoxG = new System.Windows.Forms.TextBox();
+            this.textBoxR = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox15 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.right_panel.SuspendLayout();
             this.MosaikaPanel.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -71,10 +91,12 @@ namespace WinFormsCG
             // taskToolStripMenuItem
             // 
             this.taskToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lab1ToolStripMenuItem});
+            this.lab1ToolStripMenuItem,
+            this.lab2ToolStripMenuItem});
             this.taskToolStripMenuItem.Name = "taskToolStripMenuItem";
             this.taskToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.taskToolStripMenuItem.Text = "Task";
+            this.taskToolStripMenuItem.Click += new System.EventHandler(this.taskToolStripMenuItem_Click);
             // 
             // lab1ToolStripMenuItem
             // 
@@ -90,6 +112,21 @@ namespace WinFormsCG
             this.task1ToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.task1ToolStripMenuItem.Text = "Mosaika";
             this.task1ToolStripMenuItem.Click += new System.EventHandler(this.task1ToolStripMenuItem_Click);
+            // 
+            // lab2ToolStripMenuItem
+            // 
+            this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.colorConversionToolStripMenuItem});
+            this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
+            this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.lab2ToolStripMenuItem.Text = "Lab2";
+            // 
+            // colorConversionToolStripMenuItem
+            // 
+            this.colorConversionToolStripMenuItem.Name = "colorConversionToolStripMenuItem";
+            this.colorConversionToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.colorConversionToolStripMenuItem.Text = "Color Conversion";
+            this.colorConversionToolStripMenuItem.Click += new System.EventHandler(this.colorConversionToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -158,6 +195,7 @@ namespace WinFormsCG
             this.MosaikaPanel.Name = "MosaikaPanel";
             this.MosaikaPanel.Size = new System.Drawing.Size(153, 366);
             this.MosaikaPanel.TabIndex = 1;
+            this.MosaikaPanel.Tag = "lab1";
             this.MosaikaPanel.Visible = false;
             // 
             // textBox1
@@ -333,6 +371,195 @@ namespace WinFormsCG
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.hslRGB);
+            this.panel2.Controls.Add(this.RgbHsl);
+            this.panel2.Controls.Add(this.textBoxL);
+            this.panel2.Controls.Add(this.textBoxS);
+            this.panel2.Controls.Add(this.textBoxH);
+            this.panel2.Controls.Add(this.textBox13);
+            this.panel2.Controls.Add(this.textBox12);
+            this.panel2.Controls.Add(this.textBox11);
+            this.panel2.Controls.Add(this.textBox10);
+            this.panel2.Controls.Add(this.textBoxB);
+            this.panel2.Controls.Add(this.textBoxG);
+            this.panel2.Controls.Add(this.textBoxR);
+            this.panel2.Controls.Add(this.textBox9);
+            this.panel2.Controls.Add(this.textBox8);
+            this.panel2.Controls.Add(this.textBox7);
+            this.panel2.Controls.Add(this.textBox15);
+            this.panel2.Location = new System.Drawing.Point(0, 24);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(673, 415);
+            this.panel2.TabIndex = 3;
+            this.panel2.Visible = false;
+            // 
+            // hslRGB
+            // 
+            this.hslRGB.Location = new System.Drawing.Point(420, 327);
+            this.hslRGB.Name = "hslRGB";
+            this.hslRGB.Size = new System.Drawing.Size(162, 43);
+            this.hslRGB.TabIndex = 15;
+            this.hslRGB.Text = "HSL -> RGB";
+            this.hslRGB.UseVisualStyleBackColor = true;
+            this.hslRGB.Click += new System.EventHandler(this.hslRGB_Click);
+            // 
+            // RgbHsl
+            // 
+            this.RgbHsl.Location = new System.Drawing.Point(95, 327);
+            this.RgbHsl.Name = "RgbHsl";
+            this.RgbHsl.Size = new System.Drawing.Size(162, 43);
+            this.RgbHsl.TabIndex = 14;
+            this.RgbHsl.Text = "RGB -> HSL";
+            this.RgbHsl.UseVisualStyleBackColor = true;
+            this.RgbHsl.Click += new System.EventHandler(this.RgbHsl_Click);
+            // 
+            // textBoxL
+            // 
+            this.textBoxL.Location = new System.Drawing.Point(526, 278);
+            this.textBoxL.Name = "textBoxL";
+            this.textBoxL.Size = new System.Drawing.Size(116, 23);
+            this.textBoxL.TabIndex = 13;
+            this.textBoxL.Text = "(0..1)%";
+            this.textBoxL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxS
+            // 
+            this.textBoxS.Location = new System.Drawing.Point(526, 178);
+            this.textBoxS.Name = "textBoxS";
+            this.textBoxS.Size = new System.Drawing.Size(116, 23);
+            this.textBoxS.TabIndex = 12;
+            this.textBoxS.Text = "(0..1)%";
+            this.textBoxS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+
+            // 
+            // textBoxH
+            // 
+            this.textBoxH.Location = new System.Drawing.Point(526, 90);
+            this.textBoxH.Name = "textBoxH";
+            this.textBoxH.Size = new System.Drawing.Size(116, 23);
+            this.textBoxH.TabIndex = 11;
+            this.textBoxH.Text = "(0..360)";
+            this.textBoxH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+
+            // 
+            // textBox13
+            // 
+            this.textBox13.AccessibleDescription = "";
+            this.textBox13.Location = new System.Drawing.Point(357, 278);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.ReadOnly = true;
+            this.textBox13.Size = new System.Drawing.Size(134, 23);
+            this.textBox13.TabIndex = 10;
+            this.textBox13.Text = "Write L";
+            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox12
+            // 
+            this.textBox12.AccessibleDescription = "";
+            this.textBox12.Location = new System.Drawing.Point(357, 178);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.ReadOnly = true;
+            this.textBox12.Size = new System.Drawing.Size(134, 23);
+            this.textBox12.TabIndex = 9;
+            this.textBox12.Text = "Write S";
+            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox11
+            // 
+            this.textBox11.AccessibleDescription = "";
+            this.textBox11.Location = new System.Drawing.Point(357, 90);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.ReadOnly = true;
+            this.textBox11.Size = new System.Drawing.Size(134, 23);
+            this.textBox11.TabIndex = 8;
+            this.textBox11.Text = "Write H";
+            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox10
+            // 
+            this.textBox10.AccessibleDescription = "";
+            this.textBox10.Location = new System.Drawing.Point(357, 33);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
+            this.textBox10.Size = new System.Drawing.Size(285, 23);
+            this.textBox10.TabIndex = 7;
+            this.textBox10.Text = "HSL";
+            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxB
+            // 
+            this.textBoxB.Location = new System.Drawing.Point(192, 278);
+            this.textBoxB.Name = "textBoxB";
+            this.textBoxB.Size = new System.Drawing.Size(116, 23);
+            this.textBoxB.TabIndex = 6;
+            this.textBoxB.Text = "(0..255)";
+            this.textBoxB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxG
+            // 
+            this.textBoxG.Location = new System.Drawing.Point(192, 178);
+            this.textBoxG.Name = "textBoxG";
+            this.textBoxG.Size = new System.Drawing.Size(116, 23);
+            this.textBoxG.TabIndex = 5;
+            this.textBoxG.Text = "(0..255)";
+            this.textBoxG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBoxR
+            // 
+            this.textBoxR.Location = new System.Drawing.Point(192, 89);
+            this.textBoxR.Name = "textBoxR";
+            this.textBoxR.Size = new System.Drawing.Size(116, 23);
+            this.textBoxR.TabIndex = 4;
+            this.textBoxR.Text = "(0..255)";
+            this.textBoxR.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox9
+            // 
+            this.textBox9.AccessibleDescription = "";
+            this.textBox9.Location = new System.Drawing.Point(23, 278);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
+            this.textBox9.Size = new System.Drawing.Size(134, 23);
+            this.textBox9.TabIndex = 3;
+            this.textBox9.Text = "Write B";
+            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox8
+            // 
+            this.textBox8.AccessibleDescription = "";
+            this.textBox8.Location = new System.Drawing.Point(23, 178);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(134, 23);
+            this.textBox8.TabIndex = 2;
+            this.textBox8.Text = "Write G";
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBox7
+            // 
+            this.textBox7.AccessibleDescription = "";
+            this.textBox7.Location = new System.Drawing.Point(23, 33);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(285, 23);
+            this.textBox7.TabIndex = 1;
+            this.textBox7.Text = "RGB";
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox7.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            // 
+            // textBox15
+            // 
+            this.textBox15.AccessibleDescription = "";
+            this.textBox15.Location = new System.Drawing.Point(23, 90);
+            this.textBox15.Name = "textBox15";
+            this.textBox15.ReadOnly = true;
+            this.textBox15.Size = new System.Drawing.Size(134, 23);
+            this.textBox15.TabIndex = 0;
+            this.textBox15.Text = "Write R";
+            this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -340,8 +567,9 @@ namespace WinFormsCG
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(838, 442);
             this.Controls.Add(this.MosaikaPanel);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -354,6 +582,8 @@ namespace WinFormsCG
             this.right_panel.ResumeLayout(false);
             this.MosaikaPanel.ResumeLayout(false);
             this.MosaikaPanel.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,6 +612,25 @@ namespace WinFormsCG
         private System.Windows.Forms.DomainUpDown domainUpDown1;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.ToolStripMenuItem lab2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem colorConversionToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox textBoxB;
+        private System.Windows.Forms.TextBox textBoxG;
+        private System.Windows.Forms.TextBox textBoxR;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBoxL;
+        private System.Windows.Forms.TextBox textBoxS;
+        private System.Windows.Forms.TextBox textBoxH;
+        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button RgbHsl;
+        private System.Windows.Forms.Button hslRGB;
     }
 }
 

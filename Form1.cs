@@ -19,11 +19,12 @@ namespace WinFormsCG
         private Pen pen;
         private Random random= new Random();
         private Brush brush;
+       
         public Form1()
         {
             InitializeComponent();
             graphics = pictureBox1.CreateGraphics();
-            pen = new Pen(Color.Black,10);
+            pen = new Pen(System.Drawing.Color.Black,10);
             random = new Random();
         }
 
@@ -34,8 +35,13 @@ namespace WinFormsCG
             MosaikaPanel.Visible = true;
         }
 
+        private void taskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            start_mosaika.Visible = false;
+            MosaikaPanel.Visible = false;
+            panel2.Visible = false;
+        }
 
-     
         private void Form1_Load(object sender, EventArgs e)
         {
            
@@ -58,7 +64,7 @@ namespace WinFormsCG
             Refresh();
             int widthBox = Mosaika.boxSize;
 
-            Color[] colors = Mosaika.colors;
+            System.Drawing.Color[] colors = Mosaika.colors;
 
             int countWidthBoxes = Mosaika.mosaikaBoxWidth / widthBox+1;
             int countHeightBoxes = Mosaika.mosaikaBoxHeigth / widthBox+1;
@@ -114,28 +120,28 @@ namespace WinFormsCG
             switch (index)
             {
                 case 0:
-                    Mosaika.colors[numberColor] = Color.Red;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Red;
                     break;
                 case 1:
-                    Mosaika.colors[numberColor] = Color.Black;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Black;
                     break;
                 case 2:
-                    Mosaika.colors[numberColor] = Color.Green;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Green;
                     break;
                 case 3:
-                    Mosaika.colors[numberColor] = Color.Yellow;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Yellow;
                     break;
                 case 4:
-                    Mosaika.colors[numberColor] = Color.Brown;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Brown;
                     break;
                 case 5:
-                    Mosaika.colors[numberColor] = Color.Crimson;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Crimson;
                     break;
                 case 6:
-                    Mosaika.colors[numberColor] = Color.Coral;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Coral;
                     break;
                 case 7:
-                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Chocolate;
                     break;
                 default:
                     break;
@@ -143,6 +149,7 @@ namespace WinFormsCG
         }
 
 
+       
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             int index = comboBox2.SelectedIndex;
@@ -150,28 +157,28 @@ namespace WinFormsCG
             switch (index)
             {
                 case 0:
-                    Mosaika.colors[numberColor] = Color.Red;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Red;
                     break;
                 case 1:
-                    Mosaika.colors[numberColor] = Color.Black;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Black;
                     break;
                 case 2:
-                    Mosaika.colors[numberColor] = Color.Green;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Green;
                     break;
                 case 3:
-                    Mosaika.colors[numberColor] = Color.Yellow;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Yellow;
                     break;
                 case 4:
-                    Mosaika.colors[numberColor] = Color.Brown;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Brown;
                     break;
                 case 5:
-                    Mosaika.colors[numberColor] = Color.Crimson;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Crimson;
                     break;
                 case 6:
-                    Mosaika.colors[numberColor] = Color.Coral;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Coral;
                     break;
                 case 7:
-                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Chocolate;
                     break;
                 default:
                     break;
@@ -184,28 +191,28 @@ namespace WinFormsCG
             switch (index)
             {
                 case 0:
-                    Mosaika.colors[numberColor] = Color.Red;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Red;
                     break;
                 case 1:
-                    Mosaika.colors[numberColor] = Color.Black;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Black;
                     break;
                 case 2:
-                    Mosaika.colors[numberColor] = Color.Green;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Green;
                     break;
                 case 3:
-                    Mosaika.colors[numberColor] = Color.Yellow;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Yellow;
                     break;
                 case 4:
-                    Mosaika.colors[numberColor] = Color.Brown;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Brown;
                     break;
                 case 5:
-                    Mosaika.colors[numberColor] = Color.Crimson;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Crimson;
                     break;
                 case 6:
-                    Mosaika.colors[numberColor] = Color.Coral;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Coral;
                     break;
                 case 7:
-                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Chocolate;
                     break;
                 default:
                     break;
@@ -218,28 +225,28 @@ namespace WinFormsCG
             switch (index)
             {
                 case 0:
-                    Mosaika.colors[numberColor] = Color.Red;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Red;
                     break;
                 case 1:
-                    Mosaika.colors[numberColor] = Color.Black;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Black;
                     break;
                 case 2:
-                    Mosaika.colors[numberColor] = Color.Green;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Green;
                     break;
                 case 3:
-                    Mosaika.colors[numberColor] = Color.Yellow;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Yellow;
                     break;
                 case 4:
-                    Mosaika.colors[numberColor] = Color.Brown;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Brown;
                     break;
                 case 5:
-                    Mosaika.colors[numberColor] = Color.Crimson;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Crimson;
                     break;
                 case 6:
-                    Mosaika.colors[numberColor] = Color.Coral;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Coral;
                     break;
                 case 7:
-                    Mosaika.colors[numberColor] = Color.Chocolate;
+                    Mosaika.colors[numberColor] = System.Drawing.Color.Chocolate;
                     break;
                 default:
                     break;
@@ -280,6 +287,66 @@ namespace WinFormsCG
             bool isNum = int.TryParse(textBox6.Text, out heigth);
             if (isNum)
                 Mosaika.mosaikaBoxHeigth = heigth;
+        }
+
+        private void colorConversionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panel2.Visible = true;
+          
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+        private void RgbHsl_Click(object sender, EventArgs e)
+        {
+            byte R;
+            byte G;
+            byte B;
+
+            bool isByte = byte.TryParse(textBoxR.Text, out R);
+            if (isByte)
+                Color.RGB.Red = R;
+            bool isByte1 = byte.TryParse(textBoxG.Text, out G);
+            if (isByte1)
+                Color.RGB.Green = G;
+            bool isByte2 = byte.TryParse(textBoxB.Text, out B);
+            if (isByte2)
+                Color.RGB.Blue = B;
+
+            Color.FromRGB();
+            textBoxH.Text = Color.HSL.Hue.ToString("F0");
+            textBoxS.Text = Color.HSL.Saturation.ToString("F2");
+            textBoxL.Text = Color.HSL.Luminosity.ToString("F2");
+        }
+
+      
+
+        private void hslRGB_Click(object sender, EventArgs e)
+        {
+            float H;
+            bool isfloat = float.TryParse(textBoxH.Text, out H);
+            if (isfloat)
+                Color.HSL.Hue = H;
+
+            float S;
+            bool isfloat1 = float.TryParse(textBoxS.Text, out S);
+            if (isfloat1)
+                Color.HSL.Saturation = S;
+
+            float L;
+            bool isfloat2 = float.TryParse(textBoxL.Text, out L);
+            if (isfloat2)
+                Color.HSL.Luminosity = L;
+
+            Color.ToRGB();
+            textBoxR.Text = Color.RGB.Red.ToString();
+            textBoxG.Text = Color.RGB.Green.ToString();
+            textBoxB.Text = Color.RGB.Blue.ToString();
         }
     }
 }
