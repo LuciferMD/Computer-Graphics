@@ -35,11 +35,20 @@ namespace WinFormsCG
             MosaikaPanel.Visible = true;
         }
 
+  
+        private void bMPToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            panelbmp.Visible = true;
+            pictureBox2bmp.Visible = true;
+        }
+
         private void taskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             start_mosaika.Visible = false;
             MosaikaPanel.Visible = false;
             panel2.Visible = false;
+            panelbmp.Visible = false;
+            pictureBox2bmp.Visible = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -347,6 +356,29 @@ namespace WinFormsCG
             textBoxR.Text = Color.RGB.Red.ToString();
             textBoxG.Text = Color.RGB.Green.ToString();
             textBoxB.Text = Color.RGB.Blue.ToString();
+        }
+
+        
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void buttonOpenFileBmp_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
+                return;
+            // получаем выбранный файл
+            string filename = openFileDialog1.FileName;
+            // читаем файл в строку
+
+
+
+            //string fileText = System.IO.File.ReadAllText(filename);
+            //textBox1.Text = fileText;
+
+            //pictureBox2bmp
         }
     }
 }

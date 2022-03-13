@@ -35,9 +35,12 @@ namespace WinFormsCG
             this.task1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorConversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panelbmp = new System.Windows.Forms.Panel();
+            this.buttonOpenFileBmp = new System.Windows.Forms.Button();
             this.right_panel = new System.Windows.Forms.GroupBox();
             this.start_mosaika = new System.Windows.Forms.Button();
             this.MosaikaPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -53,6 +56,7 @@ namespace WinFormsCG
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox2bmp = new System.Windows.Forms.PictureBox();
             this.hslRGB = new System.Windows.Forms.Button();
             this.RgbHsl = new System.Windows.Forms.Button();
             this.textBoxL = new System.Windows.Forms.TextBox();
@@ -69,12 +73,15 @@ namespace WinFormsCG
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panelbmp.SuspendLayout();
             this.right_panel.SuspendLayout();
             this.MosaikaPanel.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2bmp)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -116,7 +123,8 @@ namespace WinFormsCG
             // lab2ToolStripMenuItem
             // 
             this.lab2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.colorConversionToolStripMenuItem});
+            this.colorConversionToolStripMenuItem,
+            this.bMPToolStripMenuItem});
             this.lab2ToolStripMenuItem.Name = "lab2ToolStripMenuItem";
             this.lab2ToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.lab2ToolStripMenuItem.Text = "Lab2";
@@ -127,6 +135,13 @@ namespace WinFormsCG
             this.colorConversionToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.colorConversionToolStripMenuItem.Text = "Color Conversion";
             this.colorConversionToolStripMenuItem.Click += new System.EventHandler(this.colorConversionToolStripMenuItem_Click);
+            // 
+            // bMPToolStripMenuItem
+            // 
+            this.bMPToolStripMenuItem.Name = "bMPToolStripMenuItem";
+            this.bMPToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.bMPToolStripMenuItem.Text = "BMP";
+            this.bMPToolStripMenuItem.Click += new System.EventHandler(this.bMPToolStripMenuItem_Click_1);
             // 
             // aboutToolStripMenuItem
             // 
@@ -147,6 +162,7 @@ namespace WinFormsCG
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.BurlyWood;
+            this.panel1.Controls.Add(this.panelbmp);
             this.panel1.Controls.Add(this.right_panel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(679, 24);
@@ -154,6 +170,26 @@ namespace WinFormsCG
             this.panel1.Size = new System.Drawing.Size(159, 418);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panelbmp
+            // 
+            this.panelbmp.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelbmp.Controls.Add(this.buttonOpenFileBmp);
+            this.panelbmp.Location = new System.Drawing.Point(0, 0);
+            this.panelbmp.Name = "panelbmp";
+            this.panelbmp.Size = new System.Drawing.Size(159, 418);
+            this.panelbmp.TabIndex = 16;
+            this.panelbmp.Visible = false;
+            // 
+            // buttonOpenFileBmp
+            // 
+            this.buttonOpenFileBmp.Location = new System.Drawing.Point(12, 374);
+            this.buttonOpenFileBmp.Name = "buttonOpenFileBmp";
+            this.buttonOpenFileBmp.Size = new System.Drawing.Size(138, 36);
+            this.buttonOpenFileBmp.TabIndex = 0;
+            this.buttonOpenFileBmp.Text = "Open";
+            this.buttonOpenFileBmp.UseVisualStyleBackColor = true;
+            this.buttonOpenFileBmp.Click += new System.EventHandler(this.buttonOpenFileBmp_Click);
             // 
             // right_panel
             // 
@@ -373,6 +409,7 @@ namespace WinFormsCG
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.pictureBox2bmp);
             this.panel2.Controls.Add(this.hslRGB);
             this.panel2.Controls.Add(this.RgbHsl);
             this.panel2.Controls.Add(this.textBoxL);
@@ -394,6 +431,15 @@ namespace WinFormsCG
             this.panel2.Size = new System.Drawing.Size(673, 415);
             this.panel2.TabIndex = 3;
             this.panel2.Visible = false;
+            // 
+            // pictureBox2bmp
+            // 
+            this.pictureBox2bmp.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2bmp.Name = "pictureBox2bmp";
+            this.pictureBox2bmp.Size = new System.Drawing.Size(673, 415);
+            this.pictureBox2bmp.TabIndex = 16;
+            this.pictureBox2bmp.TabStop = false;
+            this.pictureBox2bmp.Visible = false;
             // 
             // hslRGB
             // 
@@ -432,7 +478,6 @@ namespace WinFormsCG
             this.textBoxS.TabIndex = 12;
             this.textBoxS.Text = "(0..1)%";
             this.textBoxS.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-
             // 
             // textBoxH
             // 
@@ -442,7 +487,6 @@ namespace WinFormsCG
             this.textBoxH.TabIndex = 11;
             this.textBoxH.Text = "(0..360)";
             this.textBoxH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-
             // 
             // textBox13
             // 
@@ -560,6 +604,10 @@ namespace WinFormsCG
             this.textBox15.Text = "Write R";
             this.textBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -579,11 +627,13 @@ namespace WinFormsCG
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panelbmp.ResumeLayout(false);
             this.right_panel.ResumeLayout(false);
             this.MosaikaPanel.ResumeLayout(false);
             this.MosaikaPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2bmp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -631,6 +681,11 @@ namespace WinFormsCG
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Button RgbHsl;
         private System.Windows.Forms.Button hslRGB;
+        private System.Windows.Forms.Panel panelbmp;
+        private System.Windows.Forms.ToolStripMenuItem bMPToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox2bmp;
+        private System.Windows.Forms.Button buttonOpenFileBmp;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
