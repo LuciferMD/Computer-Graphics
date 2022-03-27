@@ -13,6 +13,10 @@ namespace WinFormsCG
     {
         public static uint width;
         public static int height;
+        public static uint offset;
+        public static uint headerSize;
+        public static uint fileSize;
+        public static UInt16 bitCount;//30
         public static Stack row = new();
         public static void OpenBmpImage(string filepath)
         {
@@ -45,14 +49,14 @@ namespace WinFormsCG
                throw new Exception("It's not a bmp format");
            }
 
-           var  fileSize = reader.ReadUInt32();
+           fileSize = reader.ReadUInt32();
            reader.ReadUInt32(); //10
-           var offset = reader.ReadUInt32();
-           var headerSize = reader.ReadUInt32();
+           offset = reader.ReadUInt32();
+           headerSize = reader.ReadUInt32();
            width = reader.ReadUInt32();
            height = reader.ReadInt32();//26
            reader.ReadUInt16();//28
-           var bitCount = reader.ReadUInt16();//30
+           bitCount = reader.ReadUInt16();//30
            if (bitCount != 24)
            {
                MessageBox.Show("It's no a 24 bits");
@@ -95,7 +99,60 @@ namespace WinFormsCG
                }
               
            }
+            stream.Close();
+            reader.Close();
        }
+
+        public static void SaveBmpImage(string filepath)
+        {
+            var stream = File.Open(filepath, FileMode.Create);
+            var writer = new BinaryWriter(stream, Encoding.UTF8, false);
+
+            char[] BM = { 'B','M'}; 
+            writer.Write(BM); //2
+            writer.Write(fileSize);//6
+            writer.Write(fileSize);//10
+            writer.Write(offset);//14
+            writer.Write(headerSize);//18
+            writer.Write(width);
+            writer.Write(height);//26
+            writer.Write(bitCount);
+            writer.Write(bitCount);//30
+
+            int x =30;
+            byte byte1 = 0;
+            while (x < offset)
+            {
+                x++;
+                writer.Write(byte1);
+            }
+
+            byte r, g, b;
+
+            for (int y = 0; y < height; y++)
+            { 
+
+                for (int k = 0; k < width;k++)
+                {
+                    b = Convert.ToByte(row.Pop());
+                    g = Convert.ToByte(row.Pop());
+                    r = Convert.ToByte(row.Pop());
+
+                    writer.Write(r);
+                    writer.Write(g);
+                    writer.Write(b);
+
+                }
+                int t = 0;
+                while (t < width % 4)
+                {
+                    t++;
+                    writer.Write(byte1);
+                }
+            }
+            stream.Close();
+            writer.Close();
+        }
 
 
         }

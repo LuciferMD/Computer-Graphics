@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -110,6 +111,7 @@ namespace WinFormsCG
 
                 }
             }
+           
 
         }
 
@@ -389,14 +391,37 @@ namespace WinFormsCG
             
         }
         private void buttonSaveBmp_Click(object sender, EventArgs e)
-        {            
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
         {
+            SaveFileDialog dialog = new SaveFileDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+   
+                Bmp.width= Convert.ToUInt16(pictureBox1.Image.Width);
+                Bmp.height = pictureBox1.Image.Height;
+                Bmp.offset = 54;
+                Bmp.headerSize = 40;
+                Bmp.fileSize =Convert.ToUInt32(Bmp.height * Bmp.width * 3 + 54);
+                Bmp.row.Clear();
 
+
+                for (int x = 0; x < Bmp.height; x++)
+                {
+                    for (int y = 0; y < Bmp.width; y++)
+                    {
+
+                        Bmp.row.Push(Convert.ToByte(bitmap.GetPixel(y, x).B));
+                        Bmp.row.Push(Convert.ToByte(bitmap.GetPixel(y, x).G));
+                        Bmp.row.Push(Convert.ToByte(bitmap.GetPixel(y, x).R));
+
+                    }
+                }
+                Bmp.SaveBmpImage(dialog.FileName);
+            }
 
         }
+
+
+
 
     }
 }
