@@ -17,29 +17,30 @@ namespace WinFormsCG
     {
         private Graphics graphics;
         private Pen pen;
-        private Random random= new Random();
+        private Random random = new Random();
         private Brush brush;
-       
+        private Bitmap bitmap ;
+        
         public Form1()
         {
             InitializeComponent();
             graphics = pictureBox1.CreateGraphics();
-            pen = new Pen(System.Drawing.Color.Black,10);
+            pen = new Pen(System.Drawing.Color.Black, 10);
             random = new Random();
         }
 
         private void task1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             start_mosaika.Visible = true;
             MosaikaPanel.Visible = true;
         }
 
-  
+
         private void bMPToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             panelbmp.Visible = true;
-            pictureBox2bmp.Visible = true;
+            
         }
 
         private void taskToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,25 +49,25 @@ namespace WinFormsCG
             MosaikaPanel.Visible = false;
             panel2.Visible = false;
             panelbmp.Visible = false;
-            pictureBox2bmp.Visible = false;
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
 
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-         
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
-       
+
 
         private void start_mosaika_Click(object sender, EventArgs e)
         {
@@ -75,21 +76,21 @@ namespace WinFormsCG
 
             System.Drawing.Color[] colors = Mosaika.colors;
 
-            int countWidthBoxes = Mosaika.mosaikaBoxWidth / widthBox+1;
-            int countHeightBoxes = Mosaika.mosaikaBoxHeigth / widthBox+1;
+            int countWidthBoxes = Mosaika.mosaikaBoxWidth / widthBox + 1;
+            int countHeightBoxes = Mosaika.mosaikaBoxHeigth / widthBox + 1;
 
             for (int b = 0; b < countHeightBoxes; b++)
             {
                 for (int i = 0; i < countWidthBoxes; i++)
                 {
-                    brush = new SolidBrush(colors[random.Next(0,colors.Length)]); ///Choose random color from massive
-                    if(i == countWidthBoxes-1)
+                    brush = new SolidBrush(colors[random.Next(0, colors.Length)]); ///Choose random color from massive
+                    if (i == countWidthBoxes - 1)
                     {
-                        int whg = Mosaika.mosaikaBoxWidth % widthBox ;
+                        int whg = Mosaika.mosaikaBoxWidth % widthBox;
                         int heig = widthBox;
-                        if(b == countHeightBoxes - 1)
+                        if (b == countHeightBoxes - 1)
                         {
-                             heig = Mosaika.mosaikaBoxHeigth % widthBox;
+                            heig = Mosaika.mosaikaBoxHeigth % widthBox;
                         }
                         Rectangle rectangle1 = new Rectangle(i * widthBox, b * widthBox, whg, heig);
                         graphics.FillRectangle(brush, rectangle1);
@@ -103,13 +104,13 @@ namespace WinFormsCG
                     }
                     else
                     {
-                    Rectangle rectangle = new Rectangle(i* widthBox, b* widthBox, widthBox, widthBox);
-                    graphics.FillRectangle(brush, rectangle);   
+                        Rectangle rectangle = new Rectangle(i * widthBox, b * widthBox, widthBox, widthBox);
+                        graphics.FillRectangle(brush, rectangle);
                     }
-                    
+
                 }
             }
-            
+
         }
 
         private void redToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,7 +159,7 @@ namespace WinFormsCG
         }
 
 
-       
+
         private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             int index = comboBox2.SelectedIndex;
@@ -287,7 +288,7 @@ namespace WinFormsCG
             bool isNum = int.TryParse(textBox5.Text, out width);
             if (isNum)
                 Mosaika.mosaikaBoxWidth = width;
-           
+
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -301,7 +302,7 @@ namespace WinFormsCG
         private void colorConversionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panel2.Visible = true;
-          
+
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
@@ -309,7 +310,7 @@ namespace WinFormsCG
 
         }
 
-       
+
 
         private void RgbHsl_Click(object sender, EventArgs e)
         {
@@ -333,7 +334,7 @@ namespace WinFormsCG
             textBoxL.Text = Color.HSL.Luminosity.ToString("F2");
         }
 
-      
+
 
         private void hslRGB_Click(object sender, EventArgs e)
         {
@@ -358,7 +359,7 @@ namespace WinFormsCG
             textBoxB.Text = Color.RGB.Blue.ToString();
         }
 
-        
+
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -370,15 +371,32 @@ namespace WinFormsCG
             if (openFileDialog1.ShowDialog() == DialogResult.Cancel)
                 return;
             // получаем выбранный файл
-            string filename = openFileDialog1.FileName;
-            // читаем файл в строку
+            string filepath = openFileDialog1.FileName;
 
+            Bmp.OpenBmpImage(filepath);
 
+            bitmap = new( Convert.ToInt32(Bmp.width),Bmp.height);
 
-            //string fileText = System.IO.File.ReadAllText(filename);
-            //textBox1.Text = fileText;
-
-            //pictureBox2bmp
+            for (int x = 0; x < Bmp.height; x++)
+            {
+                for (int y = 0; y < Bmp.width; y++)
+                {
+                    bitmap.SetPixel(y, x, System.Drawing.Color.FromArgb(Convert.ToInt32(Bmp.row.Pop()), Convert.ToInt32(Bmp.row.Pop()), Convert.ToInt32(Bmp.row.Pop())));
+                 
+                }
+            }
+            pictureBox1.Image = bitmap;
+            
         }
+        private void buttonSaveBmp_Click(object sender, EventArgs e)
+        {            
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
     }
 }

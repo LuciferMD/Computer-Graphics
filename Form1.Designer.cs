@@ -40,6 +40,7 @@ namespace WinFormsCG
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelbmp = new System.Windows.Forms.Panel();
+            this.buttonSaveBmp = new System.Windows.Forms.Button();
             this.buttonOpenFileBmp = new System.Windows.Forms.Button();
             this.right_panel = new System.Windows.Forms.GroupBox();
             this.start_mosaika = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@ namespace WinFormsCG
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox2bmp = new System.Windows.Forms.PictureBox();
             this.hslRGB = new System.Windows.Forms.Button();
             this.RgbHsl = new System.Windows.Forms.Button();
             this.textBoxL = new System.Windows.Forms.TextBox();
@@ -81,7 +81,6 @@ namespace WinFormsCG
             this.right_panel.SuspendLayout();
             this.MosaikaPanel.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2bmp)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -158,6 +157,7 @@ namespace WinFormsCG
             this.pictureBox1.Size = new System.Drawing.Size(673, 418);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // panel1
             // 
@@ -174,12 +174,23 @@ namespace WinFormsCG
             // panelbmp
             // 
             this.panelbmp.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.panelbmp.Controls.Add(this.buttonSaveBmp);
             this.panelbmp.Controls.Add(this.buttonOpenFileBmp);
             this.panelbmp.Location = new System.Drawing.Point(0, 0);
             this.panelbmp.Name = "panelbmp";
             this.panelbmp.Size = new System.Drawing.Size(159, 418);
             this.panelbmp.TabIndex = 16;
             this.panelbmp.Visible = false;
+            // 
+            // buttonSaveBmp
+            // 
+            this.buttonSaveBmp.Location = new System.Drawing.Point(12, 335);
+            this.buttonSaveBmp.Name = "buttonSaveBmp";
+            this.buttonSaveBmp.Size = new System.Drawing.Size(138, 35);
+            this.buttonSaveBmp.TabIndex = 1;
+            this.buttonSaveBmp.Text = "Save";
+            this.buttonSaveBmp.UseVisualStyleBackColor = true;
+            this.buttonSaveBmp.Click += new System.EventHandler(this.buttonSaveBmp_Click);
             // 
             // buttonOpenFileBmp
             // 
@@ -229,7 +240,7 @@ namespace WinFormsCG
             this.MosaikaPanel.Controls.Add(this.textBox6);
             this.MosaikaPanel.Location = new System.Drawing.Point(682, 28);
             this.MosaikaPanel.Name = "MosaikaPanel";
-            this.MosaikaPanel.Size = new System.Drawing.Size(153, 366);
+            this.MosaikaPanel.Size = new System.Drawing.Size(153, 345);
             this.MosaikaPanel.TabIndex = 1;
             this.MosaikaPanel.Tag = "lab1";
             this.MosaikaPanel.Visible = false;
@@ -409,7 +420,6 @@ namespace WinFormsCG
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.pictureBox2bmp);
             this.panel2.Controls.Add(this.hslRGB);
             this.panel2.Controls.Add(this.RgbHsl);
             this.panel2.Controls.Add(this.textBoxL);
@@ -431,15 +441,6 @@ namespace WinFormsCG
             this.panel2.Size = new System.Drawing.Size(673, 415);
             this.panel2.TabIndex = 3;
             this.panel2.Visible = false;
-            // 
-            // pictureBox2bmp
-            // 
-            this.pictureBox2bmp.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2bmp.Name = "pictureBox2bmp";
-            this.pictureBox2bmp.Size = new System.Drawing.Size(673, 415);
-            this.pictureBox2bmp.TabIndex = 16;
-            this.pictureBox2bmp.TabStop = false;
-            this.pictureBox2bmp.Visible = false;
             // 
             // hslRGB
             // 
@@ -633,7 +634,6 @@ namespace WinFormsCG
             this.MosaikaPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2bmp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -683,9 +683,9 @@ namespace WinFormsCG
         private System.Windows.Forms.Button hslRGB;
         private System.Windows.Forms.Panel panelbmp;
         private System.Windows.Forms.ToolStripMenuItem bMPToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pictureBox2bmp;
         private System.Windows.Forms.Button buttonOpenFileBmp;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button buttonSaveBmp;
     }
 }
 

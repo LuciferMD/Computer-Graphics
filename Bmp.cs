@@ -1,92 +1,109 @@
-﻿
-using System;
+﻿using System;
+using System.Collections;
 using System.Drawing;
 using System.Drawing.Imaging;
-
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 
 namespace WinFormsCG
 {
 
-    class Bmp
+    public static class Bmp
     {
-      
-        private static string Int2Bin(byte num)
+        public static uint width;
+        public static int height;
+        public static Stack row = new();
+        public static void OpenBmpImage(string filepath)
         {
-            string result = string.Empty;
+            int[] rgbObjects = { };
 
-            for (int i = 7; i >= 0; i--)
+            //reading
+            Stream stream;
+            BinaryReader reader;
+            try
             {
-                if ((num & (1 << i)) != 0)
-                    result += '1';
-                else
-                    result += '0';
-            }
-
-            return result;
-        }
-
-        private static byte Bin2Int(string s)
-        {
-            byte res = 0;
-
-            for (int i = 0; i <= 7; i++)
-            {
-                if (s[i] == '1')
-                    res += (byte)(1 << (7 - i));
-            }
-
-            return res;
-        }
-
-        public static byte[] OpenPicture()
-        {
-            Bitmap bmpSrc;
-            bmpSrc = (Bitmap)Bitmap.FromFile(@"D:\\ComputerGraphics\\WinFormsCG\\img\\cat.bmp");
-            BitmapData bmpData = bmpSrc.LockBits(new Rectangle(0, 0, bmpSrc.Width, bmpSrc.Height), ImageLockMode.ReadOnly, bmpSrc.PixelFormat);
-
-            IntPtr ptr = bmpData.Scan0;
-
-
-            int bytes = bmpData.Stride * bmpSrc.Height;
-            int maxWidth = bmpData.Stride * 8;
-            int width = bmpSrc.Width;
-            byte[] bValues = new byte[bytes - 1];
-            System.Runtime.InteropServices.Marshal.Copy(ptr, bValues, 0, bytes - 1);
-            bmpSrc.UnlockBits(bmpData);
-            // int bytes2 = (bmpSrc.Height * bmpSrc.Width);
-            byte[] rgbValues = new byte[bytes - 1];
-            int address = 0;
-            int x = 0;
-            byte tempByte;
-            for (int i = 0; i < (bytes - 1); i++)
-            {
-                tempByte = bValues[i];
-
-                string s = Int2Bin(tempByte);
-                s = s.Remove(7, 1) + '1';
-
-                rgbValues[i] = Bin2Int(s);
+                stream = File.Open(filepath, FileMode.Open);
+                reader = new BinaryReader(stream, Encoding.UTF8, false);
 
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Cant't open");
+                throw new Exception();
+            }
 
-            return rgbValues;
+    
+
+           //decoding
+
+           
+           var flag = reader.ReadChars(2); //BM
+           if (flag.ToString() == "BM")
+           {
+               MessageBox.Show("It's not a bmp format");
+               throw new Exception("It's not a bmp format");
+           }
+
+           var  fileSize = reader.ReadUInt32();
+           reader.ReadUInt32(); //10
+           var offset = reader.ReadUInt32();
+           var headerSize = reader.ReadUInt32();
+           width = reader.ReadUInt32();
+           height = reader.ReadInt32();//26
+           reader.ReadUInt16();//28
+           var bitCount = reader.ReadUInt16();//30
+           if (bitCount != 24)
+           {
+               MessageBox.Show("It's no a 24 bits");
+               throw new Exception("It's no a 24 bits");
+           }
+
+            int x = 30;
+            while (x<offset)
+            {
+                x++;
+                reader.ReadByte();
+            }
+
+
+           byte b;
+           byte g ;
+           byte r ;
+
+           for (int i = 0; i < height; i++)
+           {
+              
+               for (int n = 0; n < width; n++)
+               {
+
+                   b =  reader.ReadByte();
+                   g = reader.ReadByte();
+                   r = reader.ReadByte();
+
+                   row.Push(b);
+                   row.Push(g);
+                   row.Push(r);
+               }
+
+               //skip extra bytes
+               int t = 0;
+               while (t < width % 4 )
+               {
+                   t++;
+                   reader.ReadByte();
+               }
+              
+           }
+       }
+
+
         }
-
-
-        public static void OpenPicture(Bitmap bmpSrc, byte[] rgbValues, int bytes)
-        {
-            
-            Bitmap destBmp = new Bitmap(bmpSrc.Width, bmpSrc.Height, PixelFormat.Format24bppRgb);
-            BitmapData bmpData2 = destBmp.LockBits(new Rectangle(0, 0, destBmp.Width, destBmp.Height),
-                ImageLockMode.ReadOnly, destBmp.PixelFormat);
-            IntPtr ptr2 = bmpData2.Scan0;
-            System.Runtime.InteropServices.Marshal.Copy(rgbValues, 0, ptr2, bytes - 1);
-            destBmp.UnlockBits(bmpData2);
-            destBmp.Save("D:\\ComputerGraphics\\WinFormsCG\\img\\cat2.bmp", ImageFormat.Bmp);
-        }
-        
-
-       
-
     }
-}
+
+
+
+
+
+
+
