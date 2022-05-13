@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using WindowsFormsApp1.Resorces.LZ77;
 
 namespace WinFormsCG
 {
@@ -44,13 +44,18 @@ namespace WinFormsCG
             
         }
 
+        private void lZ77ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lab3panel.Visible = true;
+        }
+
         private void taskToolStripMenuItem_Click(object sender, EventArgs e)
         {
             start_mosaika.Visible = false;
             MosaikaPanel.Visible = false;
             panel2.Visible = false;
             panelbmp.Visible = false;
-            
+            Lab3panel.Visible = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -361,6 +366,10 @@ namespace WinFormsCG
             textBoxB.Text = Color.RGB.Blue.ToString();
         }
 
+        private void richTextBoxEncodingT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -420,8 +429,39 @@ namespace WinFormsCG
 
         }
 
+        private void lab3ToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+  
+
+        }
 
 
 
+        private void richTextBoxDecodingT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                string text = richTextBoxDecodingT.Text;
+                richTextBoxEncodingT.Text = string.Empty;
+                text = text.Replace("\n", "");
+                richTextBoxEncodingT.Text = LZ77.Encode(text);        
+                
+            }
+        }
+
+        private void richTextBoxEncodingT_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                string text = richTextBoxEncodingT.Text;
+                richTextBoxDecodingT.Text = string.Empty;
+                text = text.Replace("\n", "");
+                richTextBoxDecodingT.Text = LZ77.Decode(text);
+
+
+            }
+        }
+
+  
     }
 }

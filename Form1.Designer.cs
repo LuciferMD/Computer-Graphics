@@ -36,6 +36,11 @@ namespace WinFormsCG
             this.lab2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorConversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bMPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lZ77ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab3ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lab3ToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,6 +79,9 @@ namespace WinFormsCG
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Lab3panel = new System.Windows.Forms.Panel();
+            this.richTextBoxDecodingT = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxEncodingT = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -81,6 +89,7 @@ namespace WinFormsCG
             this.right_panel.SuspendLayout();
             this.MosaikaPanel.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.Lab3panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -98,7 +107,11 @@ namespace WinFormsCG
             // 
             this.taskToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lab1ToolStripMenuItem,
-            this.lab2ToolStripMenuItem});
+            this.lab2ToolStripMenuItem,
+            this.lab3ToolStripMenuItem,
+            this.lab3ToolStripMenuItem1,
+            this.lab3ToolStripMenuItem2,
+            this.lab3ToolStripMenuItem3});
             this.taskToolStripMenuItem.Name = "taskToolStripMenuItem";
             this.taskToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.taskToolStripMenuItem.Text = "Task";
@@ -141,6 +154,40 @@ namespace WinFormsCG
             this.bMPToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.bMPToolStripMenuItem.Text = "BMP";
             this.bMPToolStripMenuItem.Click += new System.EventHandler(this.bMPToolStripMenuItem_Click_1);
+            // 
+            // lab3ToolStripMenuItem
+            // 
+            this.lab3ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lZ77ToolStripMenuItem});
+            this.lab3ToolStripMenuItem.Name = "lab3ToolStripMenuItem";
+            this.lab3ToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.lab3ToolStripMenuItem.Text = "Lab3";
+            // 
+            // lZ77ToolStripMenuItem
+            // 
+            this.lZ77ToolStripMenuItem.Name = "lZ77ToolStripMenuItem";
+            this.lZ77ToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.lZ77ToolStripMenuItem.Text = "LZ77";
+            this.lZ77ToolStripMenuItem.Click += new System.EventHandler(this.lZ77ToolStripMenuItem_Click);
+            // 
+            // lab3ToolStripMenuItem1
+            // 
+            this.lab3ToolStripMenuItem1.Name = "lab3ToolStripMenuItem1";
+            this.lab3ToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
+            this.lab3ToolStripMenuItem1.Text = "Lab4";
+            // 
+            // lab3ToolStripMenuItem2
+            // 
+            this.lab3ToolStripMenuItem2.Name = "lab3ToolStripMenuItem2";
+            this.lab3ToolStripMenuItem2.Size = new System.Drawing.Size(99, 22);
+            this.lab3ToolStripMenuItem2.Text = "Lab5";
+            this.lab3ToolStripMenuItem2.Click += new System.EventHandler(this.lab3ToolStripMenuItem2_Click);
+            // 
+            // lab3ToolStripMenuItem3
+            // 
+            this.lab3ToolStripMenuItem3.Name = "lab3ToolStripMenuItem3";
+            this.lab3ToolStripMenuItem3.Size = new System.Drawing.Size(99, 22);
+            this.lab3ToolStripMenuItem3.Text = "Lab6";
             // 
             // aboutToolStripMenuItem
             // 
@@ -608,12 +655,42 @@ namespace WinFormsCG
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // Lab3panel
+            // 
+            this.Lab3panel.Controls.Add(this.richTextBoxDecodingT);
+            this.Lab3panel.Controls.Add(this.richTextBoxEncodingT);
+            this.Lab3panel.Location = new System.Drawing.Point(0, 24);
+            this.Lab3panel.Name = "Lab3panel";
+            this.Lab3panel.Size = new System.Drawing.Size(838, 418);
+            this.Lab3panel.TabIndex = 16;
+            this.Lab3panel.Visible = false;
+            // 
+            // richTextBoxDecodingT
+            // 
+            this.richTextBoxDecodingT.Location = new System.Drawing.Point(23, 33);
+            this.richTextBoxDecodingT.Name = "richTextBoxDecodingT";
+            this.richTextBoxDecodingT.Size = new System.Drawing.Size(384, 346);
+            this.richTextBoxDecodingT.TabIndex = 1;
+            this.richTextBoxDecodingT.Text = "";
+            this.richTextBoxDecodingT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxDecodingT_KeyPress);
+            // 
+            // richTextBoxEncodingT
+            // 
+            this.richTextBoxEncodingT.Location = new System.Drawing.Point(442, 33);
+            this.richTextBoxEncodingT.Name = "richTextBoxEncodingT";
+            this.richTextBoxEncodingT.Size = new System.Drawing.Size(384, 346);
+            this.richTextBoxEncodingT.TabIndex = 0;
+            this.richTextBoxEncodingT.Text = "";
+            this.richTextBoxEncodingT.TextChanged += new System.EventHandler(this.richTextBoxEncodingT_TextChanged);
+            this.richTextBoxEncodingT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxEncodingT_KeyPress);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(838, 442);
+            this.Controls.Add(this.Lab3panel);
             this.Controls.Add(this.MosaikaPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -633,6 +710,7 @@ namespace WinFormsCG
             this.MosaikaPanel.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.Lab3panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -685,6 +763,14 @@ namespace WinFormsCG
         private System.Windows.Forms.Button buttonOpenFileBmp;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button buttonSaveBmp;
+        private System.Windows.Forms.ToolStripMenuItem lab3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lZ77ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lab3ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem lab3ToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem lab3ToolStripMenuItem3;
+        private System.Windows.Forms.Panel Lab3panel;
+        private System.Windows.Forms.RichTextBox richTextBoxDecodingT;
+        private System.Windows.Forms.RichTextBox richTextBoxEncodingT;
     }
 }
 
