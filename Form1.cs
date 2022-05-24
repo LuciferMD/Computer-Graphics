@@ -24,7 +24,7 @@ namespace WinFormsCG
         private Random random = new Random();
         private Brush brush;
         private Bitmap bitmap;
-        
+      
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +33,7 @@ namespace WinFormsCG
             random = new Random();
         }
 
+       
         private void task1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -465,11 +466,20 @@ namespace WinFormsCG
 
             }
         }
-         
+        protected static int Fi1, Fi2;
+        protected static double Fi;
+        public static void InitFi(int x,int y, double z)
+        {
+            Fi1 = x;
+            Fi2 = y;
+            Fi =z;
+        }
         private void primitivesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-          
+            FormInputPrimitiev ForChoose = new();
+            ForChoose.ShowDialog();
+
 
             Bitmap bitmap = new(pictureBox1.Width,pictureBox1.Height);
             
@@ -492,7 +502,7 @@ namespace WinFormsCG
             int minCircle =1000;
             int maxCircle = 0;
 
-            for (double i = 0; i < 360; i+=0.1)
+            for (double i = Fi1; i < Fi2; i+=Fi)
             {
                 
                 double angle = i * Math.PI / 180;
@@ -518,6 +528,11 @@ namespace WinFormsCG
 
             pictureBox1.Image = bitmap;
            
+        }
+
+        private void textBox14_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
