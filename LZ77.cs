@@ -13,11 +13,11 @@ namespace WindowsFormsApp1.Resorces.LZ77
 
         public static String Decode(string input)
         {
-            string text = input;//забираем текст, состоящий из меток
-            text = text.Replace(") (", ")(");//избавляемся от лишних пробелов
-            //string [] element_mets = text.Split(')');//разделяем метки на массив, удаляя из них закрывающую скобку
-            string result_text = "";//создаем пустой текст, который будет выведен в результат
-            while (text != "" && text != " ")//выполняем для текста из меток, пока они не закончатся
+            string text = input;
+            text = text.Replace(") (", ")(");
+            
+            string result_text = "";
+            while (text != "" && text != " ")
             {
                 text = text.Remove(0, 1);//удаляем из очередной метки открывающую скобку
                 int offset = Convert.ToInt32(text.Remove(text.IndexOf(',')));//извлекаем номер позиции для построения подстроки
@@ -39,15 +39,15 @@ namespace WindowsFormsApp1.Resorces.LZ77
                     result_text += temp_res_text + last_symbol;//и добавляется в выходную последовательность                    
                 }
             }
-            return result_text;//вывод текста в текстовое поле
+            return result_text;
         }
         public static String Encode(String str)
         {
             int search_buffer_size = 10;//размер буффера поиска
-            string search_buffer = "";//создание пустого буффера поиска
-            string proactive_buffer = str;//создание упреждающего буффера с текстом, который будет упаковываться
-            string result_text = ""; //создание переменной, в которую будет вписываться результат
-                                     // заполнение упреждающего буффера количеством символов, указанным в соответствующем текстовом поле 
+            string search_buffer = "";
+            string proactive_buffer = str;
+            string result_text = ""; 
+                                    
             while (proactive_buffer.Length != 0)//далее упаковываем, пока количество символов в упреждающем буффере не будет равно 0 (далее по алгоритму такая ситуация возникнет когда закончатся необработанные символы текста)
             {
                 string temp_proactive_buffer = proactive_buffer;//создадим копию упреждающего буффера, которая в цикле (начинается с строки 32)проверки наличия совпадения строки будет обрезаться
@@ -96,7 +96,7 @@ namespace WindowsFormsApp1.Resorces.LZ77
                 catch { proactive_buffer = proactive_buffer.Remove(0); }//выполняется, если на текущем шаге в упреждающем буффере остался 1 символ
                 result_text += "(" + offset + "," + coincident_text.Length + "," + last_symbol + ") ";//добавление метки в текст, предназначенный для вывода на экран. Метка имеет формат: ("номер позиции начала подстроки из буффера поиска, в которой найдено совпадение","длина подстроки","символ, которым оканчивается совпадающая строка")
             }
-            return result_text;//вывод текста в текстовое поле
+            return result_text;
         }
 
 

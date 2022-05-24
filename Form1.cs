@@ -56,6 +56,9 @@ namespace WinFormsCG
             panel2.Visible = false;
             panelbmp.Visible = false;
             Lab3panel.Visible = false;
+            //pictureBox1.BackColor = System.Drawing.Color.;
+
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -370,8 +373,6 @@ namespace WinFormsCG
         {
 
         }
-
-
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
@@ -462,6 +463,10 @@ namespace WinFormsCG
             }
         }
 
-  
+        private void primitivesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+        }
     }
 }

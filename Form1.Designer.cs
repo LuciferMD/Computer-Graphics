@@ -39,6 +39,7 @@ namespace WinFormsCG
             this.lab3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lZ77ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.primitivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab3ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.lab3ToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -172,9 +173,18 @@ namespace WinFormsCG
             // 
             // lab3ToolStripMenuItem1
             // 
+            this.lab3ToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.primitivesToolStripMenuItem});
             this.lab3ToolStripMenuItem1.Name = "lab3ToolStripMenuItem1";
             this.lab3ToolStripMenuItem1.Size = new System.Drawing.Size(99, 22);
             this.lab3ToolStripMenuItem1.Text = "Lab4";
+            // 
+            // primitivesToolStripMenuItem
+            // 
+            this.primitivesToolStripMenuItem.Name = "primitivesToolStripMenuItem";
+            this.primitivesToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.primitivesToolStripMenuItem.Text = "Primitivies";
+            this.primitivesToolStripMenuItem.Click += new System.EventHandler(this.primitivesToolStripMenuItem_Click);
             // 
             // lab3ToolStripMenuItem2
             // 
@@ -699,7 +709,6 @@ namespace WinFormsCG
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Comuter Graphics";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -771,6 +780,7 @@ namespace WinFormsCG
         private System.Windows.Forms.Panel Lab3panel;
         private System.Windows.Forms.RichTextBox richTextBoxDecodingT;
         private System.Windows.Forms.RichTextBox richTextBoxEncodingT;
+        private System.Windows.Forms.ToolStripMenuItem primitivesToolStripMenuItem;
     }
 }
 
