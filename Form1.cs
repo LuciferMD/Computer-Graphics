@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComputerGraphics.UI.Utils.Rasterization.Primitives.Line;
+using ComputerGraphics.Utils.Rasterization.Primitives.Ellipse;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsFormsApp1.Resorces.LZ77;
+using static WinFormsCG.Color;
 
 namespace WinFormsCG
 {
@@ -20,7 +23,7 @@ namespace WinFormsCG
         private Pen pen;
         private Random random = new Random();
         private Brush brush;
-        private Bitmap bitmap ;
+        private Bitmap bitmap;
         
         public Form1()
         {
@@ -363,7 +366,7 @@ namespace WinFormsCG
             if (isfloat2)
                 Color.HSL.Luminosity = L;
 
-            Color.ToRGB();
+            //Color.ToRGB();
             textBoxR.Text = Color.RGB.Red.ToString();
             textBoxG.Text = Color.RGB.Green.ToString();
             textBoxB.Text = Color.RGB.Blue.ToString();
@@ -462,11 +465,59 @@ namespace WinFormsCG
 
             }
         }
-
+         
         private void primitivesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //pictureBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+
+          
+
+            Bitmap bitmap = new(pictureBox1.Width,pictureBox1.Height);
+            
+
+            void setpixel(int x, int y)
+            {
+                
+                bitmap.SetPixel(x, y, System.Drawing.Color.FromArgb(Convert.ToInt32(RGB.Red), Convert.ToInt32(RGB.Green), Convert.ToInt32(RGB.Blue)));
+            }
+            double Function1(double x) 
+            {
+                //double radian =;
+                return (1 -Math.Abs(Math.Cos(x))) / 5;
+            } 
+
             pictureBox1.BorderStyle = BorderStyle.FixedSingle;
+            
+            Action<int, int> stpixel = setpixel;
+
+            int minCircle =1000;
+            int maxCircle = 0;
+
+            for (double i = 0; i < 360; i+=0.1)
+            {
+                
+                double angle = i * Math.PI / 180;
+
+
+                int x0 = (int)(Function1(angle) *Math.Cos(angle) * 100);
+                int y0 = (int)(Function1(angle) * Math.Sin(angle) * 100);
+
+                int x1 = (int)(1 * Math.Cos(angle) * 100);
+                int y1 = (int)(1 * Math.Sin(angle) * 100);
+
+                minCircle = (int)Math.Min(minCircle,(Math.Sqrt(x0 * x0 + y0*y0)));
+                maxCircle = (int)Math.Max(maxCircle, (Math.Sqrt(x1 * x1 + y1 * y1)));
+
+                Color.ToRGB(angle, 100, 100);
+                LineBresenham.Draw(x0+ pictureBox1.Width/2, y0+ pictureBox1.Height/2, x1+ pictureBox1.Width/2, y1+ pictureBox1.Height/2, stpixel);
+            }
+            RGB.Red=0;
+            RGB.Blue = 0;
+            RGB.Green = 0;
+            CircleBresenham.Draw(minCircle, pictureBox1.Width/2, pictureBox1.Height/2, stpixel);
+            CircleBresenham.Draw(maxCircle, pictureBox1.Width / 2, pictureBox1.Height / 2, stpixel);
+
+            pictureBox1.Image = bitmap;
+           
         }
     }
 }

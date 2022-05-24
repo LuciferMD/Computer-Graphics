@@ -80,11 +80,14 @@ namespace WinFormsCG
             HSL.Luminosity = L;
         }
 
-        public static void ToRGB()
+        public static void ToRGB(double x, double y, double z)
         {
-            float Hue = HSL.Hue/60f;
-            float Saturation = HSL.Saturation;
-            float Luminosity = HSL.Luminosity;
+            //float Hue = HSL.Hue/60f;
+            // float Saturation = HSL.Saturation;
+            //float Luminosity = HSL.Luminosity;
+            float Hue = (float)x;
+            float Saturation = (float)y;
+            float Luminosity = (float)z;
 
             byte r, g, b;
             if (Saturation == 0)
