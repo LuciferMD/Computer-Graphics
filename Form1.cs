@@ -1,4 +1,5 @@
-﻿using ComputerGraphics.UI.Utils.Rasterization.Primitives.Line;
+﻿using ComputerGraphics.Core.Algorithms.Clipping.CohenSutherland;
+using ComputerGraphics.UI.Utils.Rasterization.Primitives.Line;
 using ComputerGraphics.Utils.Rasterization.Primitives.Ellipse;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace WinFormsCG
         {
             InitializeComponent();
             graphics = pictureBox1.CreateGraphics();
-            pen = new Pen(System.Drawing.Color.Black, 10);
+            pen = new Pen(System.Drawing.Color.Black, 2);
             random = new Random();
         }
 
@@ -474,6 +475,9 @@ namespace WinFormsCG
             Fi2 = y;
             Fi =z;
         }
+
+      
+
         private void primitivesToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -486,7 +490,7 @@ namespace WinFormsCG
 
             void setpixel(int x, int y)
             {
-                
+           
                 bitmap.SetPixel(x, y, System.Drawing.Color.FromArgb(Convert.ToInt32(RGB.Red), Convert.ToInt32(RGB.Green), Convert.ToInt32(RGB.Blue)));
             }
             double Function1(double x) 
@@ -530,9 +534,92 @@ namespace WinFormsCG
            
         }
 
-        private void textBox14_TextChanged(object sender, EventArgs e)
-        {
+        bool isClicked = false; // идентификатор нажатия кнопки мыши
 
+        int X = 0;
+        int Y = 0;
+
+        int X1 = 0;
+        int Y1 = 0;
+
+        Point[] points = new Point[8];
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isClicked = true;
+
+            X = e.X;
+            Y = e.Y;
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isClicked)
+            {
+                X1 = e.X;
+                Y1 = e.Y;
+                //pictureBox1.Invalidate(); //если кнопка зажата, то перерисовываем прямоугольник 
+            }
+        }
+
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isClicked = false;
+            //каждая последующая выходит из предыдущей
+            Bitmap bitmap1 = new(pictureBox1.Width, pictureBox1.Height);
+
+            void setpixel(int x, int y)
+            {
+
+                bitmap1.SetPixel(x, y, System.Drawing.Color.Red);
+            }
+
+            Action<int, int> stpixel = setpixel;
+
+            int xLine = 0, yLine = 0, x1Line = 0, y1Line = 0;
+
+            var clippedLine = (xLine, yLine, x1Line, y1Line);
+
+            if (X>X1)
+            {
+                (X, X1) = (X1, X);
+            }
+            if (Y < Y1)
+            {
+                (Y, Y1) = (Y1, Y);
+            }
+
+            CohenSutherland.Clip((40, 40, 400, 400), (X, X1, Y1, Y), out clippedLine);
+
+            LineBresenham.Draw(clippedLine.xLine, clippedLine.yLine, clippedLine.x1Line, clippedLine.y1Line, stpixel);
+           
+            pictureBox1.Image = bitmap1;
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+           
+
+            points[0] = new Point(X, Y);
+            points[1] = new Point(X1, Y);
+            points[2] = new Point(X1, Y);
+            points[3] = new Point(X1, Y1);
+            points[4] = new Point(X1, Y1);
+            points[5] = new Point(X, Y1);
+            points[6] = new Point(X, Y1);
+            points[7] = new Point(X, Y);
+
+             e.Graphics.DrawLines(pen, points);  //рисуем соединенные линии по координатам точек
+           
+        }
+
+        private void cohenSutherlandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Cursor = Cursors.Cross;
+            pictureBox1.Visible = true;
+            pictureBox1.BackColor = System.Drawing.Color.White;
+           
         }
     }
+
+    
 }

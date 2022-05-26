@@ -41,6 +41,7 @@ namespace WinFormsCG
             this.lab3ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.primitivesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab3ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.cohenSutherlandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lab3ToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -188,10 +189,19 @@ namespace WinFormsCG
             // 
             // lab3ToolStripMenuItem2
             // 
+            this.lab3ToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cohenSutherlandToolStripMenuItem});
             this.lab3ToolStripMenuItem2.Name = "lab3ToolStripMenuItem2";
             this.lab3ToolStripMenuItem2.Size = new System.Drawing.Size(99, 22);
             this.lab3ToolStripMenuItem2.Text = "Lab5";
             this.lab3ToolStripMenuItem2.Click += new System.EventHandler(this.lab3ToolStripMenuItem2_Click);
+            // 
+            // cohenSutherlandToolStripMenuItem
+            // 
+            this.cohenSutherlandToolStripMenuItem.Name = "cohenSutherlandToolStripMenuItem";
+            this.cohenSutherlandToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.cohenSutherlandToolStripMenuItem.Text = "CohenSutherland";
+            this.cohenSutherlandToolStripMenuItem.Click += new System.EventHandler(this.cohenSutherlandToolStripMenuItem_Click);
             // 
             // lab3ToolStripMenuItem3
             // 
@@ -214,6 +224,10 @@ namespace WinFormsCG
             this.pictureBox1.Size = new System.Drawing.Size(673, 418);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // panel1
             // 
@@ -492,9 +506,9 @@ namespace WinFormsCG
             this.panel2.Controls.Add(this.textBox8);
             this.panel2.Controls.Add(this.textBox7);
             this.panel2.Controls.Add(this.textBox15);
-            this.panel2.Location = new System.Drawing.Point(0, 24);
+            this.panel2.Location = new System.Drawing.Point(0, 50);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(673, 415);
+            this.panel2.Size = new System.Drawing.Size(673, 389);
             this.panel2.TabIndex = 3;
             this.panel2.Visible = false;
             // 
@@ -781,6 +795,7 @@ namespace WinFormsCG
         private System.Windows.Forms.RichTextBox richTextBoxDecodingT;
         private System.Windows.Forms.RichTextBox richTextBoxEncodingT;
         private System.Windows.Forms.ToolStripMenuItem primitivesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cohenSutherlandToolStripMenuItem;
     }
 }
 
