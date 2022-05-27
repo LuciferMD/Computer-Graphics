@@ -696,6 +696,7 @@ namespace WinFormsCG
             this.richTextBoxDecodingT.Size = new System.Drawing.Size(384, 346);
             this.richTextBoxDecodingT.TabIndex = 1;
             this.richTextBoxDecodingT.Text = "";
+            this.richTextBoxDecodingT.TextChanged += new System.EventHandler(this.richTextBoxDecodingT_TextChanged);
             this.richTextBoxDecodingT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.richTextBoxDecodingT_KeyPress);
             // 
             // richTextBoxEncodingT

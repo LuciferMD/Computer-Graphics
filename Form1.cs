@@ -1,4 +1,6 @@
 ﻿using ComputerGraphics.Core.Algorithms.Clipping.CohenSutherland;
+using ComputerGraphics.Core.Algorithms.Clipping.WeilerAtherton;
+using ComputerGraphics.Core.Algorithms.Rasterization.Primitives;
 using ComputerGraphics.UI.Utils.Rasterization.Primitives.Line;
 using ComputerGraphics.Utils.Rasterization.Primitives.Ellipse;
 using System;
@@ -587,10 +589,12 @@ namespace WinFormsCG
             {
                 (Y, Y1) = (Y1, Y);
             }
+            if(CohenSutherland.Clip((40, 40, 400, 400), (X, X1, Y1, Y), out clippedLine))
+            {
+                LineBresenham.Draw(clippedLine.xLine, clippedLine.yLine, clippedLine.x1Line, clippedLine.y1Line, stpixel);
+            }
+            
 
-            CohenSutherland.Clip((40, 40, 400, 400), (X, X1, Y1, Y), out clippedLine);
-
-            LineBresenham.Draw(clippedLine.xLine, clippedLine.yLine, clippedLine.x1Line, clippedLine.y1Line, stpixel);
            
             pictureBox1.Image = bitmap1;
         }
@@ -612,12 +616,40 @@ namespace WinFormsCG
            
         }
 
+        private void richTextBoxDecodingT_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void cohenSutherlandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox1.Cursor = Cursors.Cross;
             pictureBox1.Visible = true;
             pictureBox1.BackColor = System.Drawing.Color.White;
-           
+
+            Bitmap bitmap1 = new(pictureBox1.Width, pictureBox1.Height);
+            void setpixel(int x, int y)
+            {
+                bitmap1.SetPixel(x, y, System.Drawing.Color.Red);
+            }
+            Action<int, int> stpixel = setpixel;
+
+            int[] LinesForPolygon = {100,100,100,200,200,200,200,100 };
+            int[] LinesForClipPolygon = { 220, 400, 150, 10 };
+
+
+            CustomPolygon CastPolygon = new(LinesForPolygon);
+            CustomPolygon CastClipPolygon = new(LinesForClipPolygon);
+
+            IEnumerable<CustomLine> resultLines;
+
+            resultLines = WeilerAthertonAlgorithm.Clip(CastPolygon,CastClipPolygon);
+
+            foreach (var line in resultLines)
+            {
+                LineBresenham.Draw((int)line.P1.X, (int)line.P1.Y, (int)line.P2.X, (int)line.P2.Y, setpixel);
+            }
+            pictureBox1.Image = bitmap1;
         }
     }
 
